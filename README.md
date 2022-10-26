@@ -1,29 +1,29 @@
 # JavaServerExecutor-Antrl4_Compailer
 
-##Server
+## Server
 - inside hr.fer.ilj.antlr.server package
 - start `Main` to start ServerExecutor pool
 
-##Demo
+## Demo
 - inside hr.fer.ilj.antlr.server.demo
 - you can test local input from own console for antlr4 language input
 
-##Client
+## Client
 - inside hr.tel.fer.lab1.client
 - in your console you can input query
 
-##Logging
+## Logging
 - inside hr.tel.fer.lab1.logging
 - this package is used to parse logging file used on server
 - every line in parsed using `LogLexer` then its information is stored inside `LogEntry`
 - `Expression` class is used to store query
 - `ExpressionExtractor` extends `ExpressionExtractor`, stores query inside `Expression`
 
-##ANTLR4
+## ANTLR4
 - Inside build/generated-src/antlr/main
 - Created from grammarwhich is inside `src/main/antlr/hr.fer.ilj.antlr`
 
-##Grammar
+## Grammar
 ```
 grammar Request;
 
@@ -48,6 +48,6 @@ WS : [ \t\r\n]+ -> skip ;
 ```
 
 
-##Query Examples
+## Query Examples
 - FILTER METHOD!="GET" STATUS==“200“ RETURN"5" 
 - FILTER IP=="161.53.19.XXX" VERSION=="HTTP/1.1" RETURN"*" 
