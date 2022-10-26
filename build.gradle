@@ -1,0 +1,74 @@
+plugins {
+	id 'java'
+    id 'eclipse'
+    id 'antlr'
+    id 'com.github.ben-manes.versions' version '0.42.0' // find new versions of dependency task: dependencyUpdates
+}
+
+//apply plugin: 'project-report'
+//apply plugin: 'build-dashboard'
+//apply plugin: 'findbugs' // task 
+//apply plugin: 'pmd' // task pmdMain i pmdTest
+//apply plugin: 'checkstyle' // task checkstyleMain i checkstyleTest
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
+repositories {
+    mavenCentral()
+}
+
+generateGrammarSource {
+    arguments += ['-visitor']
+}
+
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+    testImplementation 'org.assertj:assertj-core:3.23.1'
+
+	antlr "org.antlr:antlr4:4.11.1"
+}
+
+// runs tests with JUnit 5
+tasks.withType(Test).configureEach {
+  useJUnitPlatform()
+}
+
+/* enable preview features in gradle
+compileJava {
+    options.compilerArgs += ["--enable-preview"]
+}
+test {
+    jvmArgs '--enable-preview'
+}
+*/
+
+/*
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+checkstyle {
+	toolVersion = '7.6'
+}
+*/
+
+// kreira zip za predavanja
+tasks.register('lectureZip', Zip) {
+  group = "build"
+  from project.fileTree("$project.projectDir") {
+      exclude "$buildDir.name/**"
+      exclude "bin/**"
+      exclude ".gradle/**"
+  }
+  archiveFileName = project.name + ".zip"
+  destinationDirectory = file("$buildDir")
+}
+
