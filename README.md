@@ -49,5 +49,5 @@ WS : [ \t\r\n]+ -> skip ;
 
 
 ## Query Examples
-- FILTER METHOD!="GET" STATUS==“200“ RETURN"5" 
+- FILTER METHOD!="GET" STATUS=="200" RETURN"5"
 - FILTER IP=="161.53.19.XXX" VERSION=="HTTP/1.1" RETURN"*" 
