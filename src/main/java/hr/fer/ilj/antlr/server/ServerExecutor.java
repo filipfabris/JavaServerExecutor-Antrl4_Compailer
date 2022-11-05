@@ -47,6 +47,7 @@ public class ServerExecutor implements Runnable {
 						out.println("End");
 						break;
 					}
+					
 					List<LogEntry> logs = processInput(request);
 					processOutput(logs, out);
 				}
@@ -65,10 +66,13 @@ public class ServerExecutor implements Runnable {
 	}
 
 	private void processOutput(List<LogEntry> logs, PrintWriter out) {
+		StringBuilder sb = new StringBuilder();
 		logs.forEach(log -> {
-			out.print(log.getWholeEntry());
-			out.println();
+			sb.append(log.getWholeEntry());
+			sb.append("\n");
 		});
+		out.print(sb.toString());
+		out.flush();
 	}
 
 	private List<LogEntry> processInput(String request) throws IOException {

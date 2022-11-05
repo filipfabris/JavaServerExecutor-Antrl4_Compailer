@@ -90,6 +90,8 @@ public class ParserDemo {
 		LogLoader loader = new LogLoader();
 		List<LogEntry> logs = loader.load(new FileReader("logs.txt"));
 		
+		// FILTER METHOD!="GET" STATUS=="200" RETURN"5"
+		
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine();
 		

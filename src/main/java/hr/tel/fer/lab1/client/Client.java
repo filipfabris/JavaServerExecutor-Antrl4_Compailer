@@ -1,6 +1,5 @@
 package hr.tel.fer.lab1.client;
 
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -16,22 +15,34 @@ public class Client {
 		String userInput;
 		System.out.println("Start from User side");
 		System.out.println("echo:" + brIn.readLine());
-		
-		while ((userInput = consoleInput.readLine()) != null) {
-			pwOut.println(userInput);
+
+		while (true) {
+
+			System.out.print("> ");
+			userInput = consoleInput.readLine();
 			
+			if(userInput == null || userInput.isEmpty()) {
+				System.out.println("Ending program");
+				break;
+			}
+
+			pwOut.println(userInput);
+
 			StringBuilder sb = new StringBuilder();
 			String strFromServer = null;
-			while((strFromServer = brIn.readLine()) != null) {
+			Thread.sleep(200);
+
+			while (brIn.ready()) {
+				strFromServer = brIn.readLine();
 				sb.append(strFromServer);
 				sb.append('\n');
 			}
-			
-			System.out.println("echo: " + sb.toString());
-			
+
+			System.out.println(sb.toString());
 			if (userInput.equalsIgnoreCase("EXIT"))
 				break;
 		}
+
 		pwOut.close();
 		brIn.close();
 		serverConnection.close();
