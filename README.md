@@ -50,4 +50,13 @@ WS : [ \t\r\n]+ -> skip ;
 
 ## Query Examples
 - FILTER METHOD!="GET" STATUS=="200" RETURN"5"
-- FILTER IP=="161.53.19.XXX" VERSION=="HTTP/1.1" RETURN"*" 
+- FILTER IP=="161.53.19.XXX" VERSION=="1.1" RETURN"*" 
+
+```
+> FILTER METHOD!="GET" STATUS=="200" RETURN"5"
+127.0.0.1 [11/Feb/2014:10:45:02] OPTIONS * HTTP/1.0 200 "Apache/2.2.22 (Debian) (internal dummy connection)"
+127.0.0.1 [11/Feb/2014:10:45:02] OPTIONS * HTTP/1.0 200 "Apache/2.2.22 (Debian) (internal dummy connection)"
+127.0.0.1 [11/Feb/2014:10:45:02] OPTIONS * HTTP/1.0 200 "Apache/2.2.22 (Debian) (internal dummy connection)"
+127.0.0.1 [11/Feb/2014:10:45:02] OPTIONS * HTTP/1.0 200 "Apache/2.2.22 (Debian) (internal dummy connection)"
+127.0.0.1 [11/Feb/2014:10:45:02] OPTIONS * HTTP/1.0 200 "Apache/2.2.22 (Debian) (internal dummy connection)"
+```
